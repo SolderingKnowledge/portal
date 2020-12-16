@@ -4,9 +4,12 @@ const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const schema = require('./schema/schema');
-const MONGO_URI = require("./connectionString")
+const MONGO_URI = require("./connectionString");
+const cors = require("cors");
 
 const app = express();
+
+const port = process.env.PORT || 5000;
 
 if (!MONGO_URI) {
     console.info("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
@@ -19,15 +22,16 @@ mongoose.connection
     .once('open', () => console.log('Connected to MongoDB Atlas!'))
     .on('error', error => console.log('Error connecting to MongoDB Atlas:', error));
 
+// middlewares
+app.use(cors());
 app.use(bodyParser.json());
 app.use('/graphql', graphqlHTTP({
   schema,
   graphiql: true
 }));
 
-const webpackMiddleware = require('webpack-dev-middleware');
-const webpack = require('webpack');
-const webpackConfig = require('../webpack.config.js');
-app.use(webpackMiddleware(webpack(webpackConfig)));
+app.listen(port, () => {
+    console.log(`App is running on port:${port}`);
+});
 
 module.exports = app;
