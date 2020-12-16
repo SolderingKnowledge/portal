@@ -5,7 +5,7 @@ node_modules/
 # all secret keys will be in this file for my reference only so I can copy and paste to connectionString.js
 connectionString2.js
 
-# .eslintcache
+.eslintcache
 
 # ignore from now on the content of .env file will be ignored because i will be inserting sensetive informations
 # However once I created and added to git and afterwards including in .gitignore file will not make differences to not push it will push anyway
