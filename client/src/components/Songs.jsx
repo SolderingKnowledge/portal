@@ -30,7 +30,7 @@ class Songs extends Component {
         })
         return (
             <div className="container">
-                <ul className="collection">
+                <ul className="collection" style={{listStyle: "none"}}>
                     { songs }
                 </ul>
                 {/* <Link to="/songs/new"><i className="material-icons">add</i></Link> */}
